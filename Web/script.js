@@ -10,14 +10,13 @@ var animation;
 function setup() {
 	createCanvas(400,400);
 	initGrid();
-	path =newPath()
+	newPath()
 }
 function draw(){
 	background(51);
 	if (state === 0)
-		animation++;
+		animate();
 	drawGrid();
-
 }
 
 function drawGrid(){
@@ -26,22 +25,56 @@ function drawGrid(){
 	var size = Math.min(width/WIDTH,height/HEIGHT);
 	for (var x = 0; x < WIDTH; x++){
 		for (var y= 0; y < HEIGHT; y++) {
-			if (grid[x][y])
+			if (grid[x][y].lit)
 				fill(255);
 			else
-				noFill(); 
+				noFill();
 			rect(x * size, y* size, size, size);
 		}
 	}
+}
+function animate(){
+	animation++;
+
+	var route = Math.floor(animation / 60);
+
+	if(route > path.length){
+		state = 1;
+		return;
+	}
+	var tile = path[route];
+	grid[tile.x][tile.y].lit = true;
 }
 
 function newPath() {
 	state = 0;
 	animation = 0;
-	path.push(new Tile(0, HEIGHT, true));
-	while (path[path.length - 1].y !== 0 ){
+
+	path.push(new Tile(0, HEIGHT - 1, true));
+
+	var i = 0;
+	while (path[path.length - 1].y !== 0){
+
 		var pool = [];
 		var prevTile = path[path.length - 1];
+
+		var left = new Tile(prevTile.x - 1, prevTile.y, true);
+		var right = new Tile(prevTile.x + 1, prevTile.y, true);
+		var up = new Tile(prevTile.x, prevTile.y - 1, true);
+
+		console.log(left.x);
+
+		if (left.x >= 0 && !pool.includes(left))
+			pool.push(left);
+
+		if (right.x <= WIDTH && !pool.includes(left))
+			pool.push(right);
+
+		if (up.y < HEIGHT && !pool.includes(up))
+			pool.push(up);
+
+		path.push(random(pool)):
+		i++;
 	}
 }
 
