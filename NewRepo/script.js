@@ -18,6 +18,14 @@ for(i=0; i<4; i++){
     
     
 	score = 0;
+
+	
+		$('div[id^=box]').click(function(){
+			pos = $(this).attr('id').slice(3, 5);
+			play.push(pos);
+			click++;
+			playsound();	
+		});
 	function playplay(){
 		result = [];
 		temp = 9;
@@ -41,12 +49,6 @@ for(i=0; i<4; i++){
 
 		play = [];
 		click = 0;
-		$('div[id^=box]').click(function(){
-			pos = $(this).attr('id').slice(3, 5);
-			play.push(pos);
-			click++;
-			playsound();	
-		});
 		console.log(play);
 
 		setTimeout(function(){
