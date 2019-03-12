@@ -1,10 +1,22 @@
 div{
 	display: inline-block;
-	background-color: black;
+	background-color: #DCDCDC;
 	width: 100px;
 	height: 100px;
 	margin: 5px;
+    border-radius: 100%;
+    transition: .2s;
+}
+div:active{
+    width: 85px;
+    height: 85px;
 }
 audio{
 	display: none;
 }
+/*#2fc1ce
+#ffb300
+#ff1280
+#ca8dc9
+#f9ec00
+#6f369d*/
