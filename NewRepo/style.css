@@ -11,6 +11,9 @@ div:active{
     width: 85px;
     height: 85px;
 }
+div:hover{
+    opacity: 1.5;
+}
 audio{
 	display: none;
 }
