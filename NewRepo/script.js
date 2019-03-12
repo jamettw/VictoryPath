@@ -1,3 +1,4 @@
+var timedis = 1000;
 for(i=0; i<4; i++){
 		for(j=0; j<4; j++){
 			$('#appendHere').append('<div id="box'+i+j+'"></div>');	
@@ -8,7 +9,7 @@ for(i=0; i<4; i++){
 	function timeOut(pos, pos2, t){
 		setTimeout(function(){
 			$('#box'+pos+pos2).css('background-color', 'red');
-		}, 1000*t);
+		}, timedis*t);
 	}
 
 		function playsound(){
@@ -19,11 +20,22 @@ for(i=0; i<4; i++){
 	score = 0;
 	function playplay(){
 		result = [];
-		for(i=0; i < 4; i++){ 
-			pos = Math.floor(Math.random() * 4);
-			pos2 = Math.floor(Math.random() * 4);
-			timeOut(pos, pos2, i);
-			result.push(pos + '' + pos2);
+		temp = 9;
+		for(i=0, j=3; i < 4; i++,j--){ 
+			if (temp!=9){
+				combo = Math.floor(Math.random() * 3);
+				if (combo===0 && temp!=0)
+					pos = temp-1;
+				else if (combo===1)
+					pos = temp;
+				else if (combo===2 && temp!=3)
+					pos = temp+1;
+			}
+			else
+				pos = Math.floor(Math.random() * 4);
+			temp = pos;
+			timeOut(j, pos, i);
+			result.push(j + '' + pos);
 		}
 		console.log(result);
 
@@ -33,8 +45,7 @@ for(i=0; i<4; i++){
 			pos = $(this).attr('id').slice(3, 5);
 			play.push(pos);
 			click++;
-			playsound();
-			// alert($(this).attr('id'));
+			playsound();	
 		});
 		console.log(play);
 
@@ -43,25 +54,23 @@ for(i=0; i<4; i++){
 				$(this).css('background-color', 'black');
 			});
 		}, 5000);
-		// $('div[id^=box]').each(function(){
-			// console.log($(this).attr('id'));
-		//})
-
-		function clear(){
-
-		}
-
+		
 		check = setInterval(function(){
 			if(click == 4){
 				if(JSON.stringify(result) == JSON.stringify(play)){
 					alert('yes');
 					score++;
-				}else{
+					click = 0;
+				}
+				else{
 					alert('no');
 				}
 				$('#score').text(score);
 				clearInterval(check);
-				playplay();
+				// if (score<=3){
+				// 	timedis -= 300;
+					playplay();
+				
 			}
 		}, 100);
 	}
