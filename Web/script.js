@@ -107,16 +107,16 @@ function initGrid(){
 		grid.push(col);
 	}
 
-};
+}
 
 function arrIncludes(pool, tile) {
 
 	var t = JSON.stringify(tile);
-	for (var i = 0; i < pool.length; i++)
-		if (JSON.stringify(pool[i] === t)
-		return trues;
+	for (var i = 0; i < pool.length; i++){
+		if(JSON.stringify(pool[i] === t)){
+            return true;
+        }
+    }
 
 	return false;
-};
-
 }
