@@ -1,6 +1,6 @@
 div{
 	display: inline-block;
-	background-color: #DCDCDC;
+	background-color: #222;
 	width: 100px;
 	height: 100px;
 	margin: 5px;
@@ -14,9 +14,23 @@ div:active{
 div:hover{
     opacity: 1.5;
 }
+html{
+    background: #111;
+}
 audio{
 	display: none;
 }
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:800);
+h1{
+    font: 2.8em Open Sans, Impact;
+    color: white;
+    text-transform: uppercase;
+}
+h2{
+    font: 1em Open Sans, Impact;
+    color: white;
+}
+
 /*#2fc1ce
 #ffb300
 #ff1280

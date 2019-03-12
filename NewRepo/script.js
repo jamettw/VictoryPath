@@ -1,4 +1,4 @@
-var timedis = 1000;
+var timedis = 500;
 for(i=0; i<4; i++){
 		for(j=0; j<4; j++){
 			$('#appendHere').append('<div id="box'+i+j+'"></div>');
@@ -55,19 +55,18 @@ for(i=0; i<4; i++){
 
 		setTimeout(function(){
 			$('div[id^=box]').each(function(){
-				$(this).css('background-color', '#DCDCDC');
+				$(this).css('background-color', '#222');
 			});
-		}, 5000);
+		}, 2000);
 
 		check = setInterval(function(){
 			if(click == 4){
 				if(JSON.stringify(result) == JSON.stringify(play)){
-					alert('yes');
 					score++;
 					click = 0;
 				}
 				else{
-					alert('no');
+					alert('Game over your score is '+ score);
 				}
 				$('#score').text(score);
 				clearInterval(check);
