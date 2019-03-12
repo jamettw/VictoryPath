@@ -1,35 +1,37 @@
 var timedis = 1000;
 for(i=0; i<4; i++){
 		for(j=0; j<4; j++){
-			$('#appendHere').append('<div id="box'+i+j+'"></div>');	
+			$('#appendHere').append('<div id="box'+i+j+'"></div>');
 		}
 		$('#appendHere').append('<br>');
 	}
 
 	function timeOut(pos, pos2, t){
 		setTimeout(function(){
-			$('#box'+pos+pos2).css('background-color', 'red');
+			allcolor = ["#2fc1ce", "#ffb300", "#ff1280", "#ca8dc9", "#f9ec00", "#6f369d"];
+			randomcolor = allcolor[Math.floor(Math.random() * allcolor.length)];
+			$('#box'+pos+pos2).css('background-color', randomcolor);
 		}, timedis*t);
 	}
 
 		function playsound(){
-    document.querySelector('#audioau').play();	
+    document.querySelector('#audioau').play();
     }
-    
-    
+
+
 	score = 0;
 
-	
+
 		$('div[id^=box]').click(function(){
 			pos = $(this).attr('id').slice(3, 5);
 			play.push(pos);
 			click++;
-			playsound();	
+			playsound();
 		});
 	function playplay(){
 		result = [];
 		temp = 9;
-		for(i=0, j=3; i < 4; i++,j--){ 
+		for(i=0, j=3; i < 4; i++,j--){
 			if (temp!=9){
 				combo = Math.floor(Math.random() * 3);
 				if (combo===0 && temp!=0)
@@ -53,10 +55,10 @@ for(i=0; i<4; i++){
 
 		setTimeout(function(){
 			$('div[id^=box]').each(function(){
-				$(this).css('background-color', 'black');
+				$(this).css('background-color', '#DCDCDC');
 			});
 		}, 5000);
-		
+
 		check = setInterval(function(){
 			if(click == 4){
 				if(JSON.stringify(result) == JSON.stringify(play)){
@@ -72,7 +74,7 @@ for(i=0; i<4; i++){
 				// if (score<=3){
 				// 	timedis -= 300;
 					playplay();
-				
+
 			}
 		}, 100);
 	}
