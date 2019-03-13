@@ -85,10 +85,10 @@ for(i=0; i<4; i++){
 				else{
 					soundlose();
 					modal.style.display = "block";
-					alert('Game over your score is '+ score);
+					$('span#score').text(score);
 					score=0;
 				}
-				$('#score').text(score);
+				
 				clearInterval(check);
 				// if (score<=3){
 				// 	timedis -= 300;
