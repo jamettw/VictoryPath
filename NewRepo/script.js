@@ -85,10 +85,10 @@ for(i=0; i<4; i++){
 				else{
 					soundlose();
 					modal.style.display = "block";
-					$('span#score').text(score);
+					$('span#showscore').text(score);
 					score=0;
 				}
-				
+				$('span#score').text(score);
 				clearInterval(check);
 				// if (score<=3){
 				// 	timedis -= 300;
