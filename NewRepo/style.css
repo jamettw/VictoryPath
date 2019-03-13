@@ -38,7 +38,7 @@ h2.b{
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
+    padding-top: 250px; /* Location of the box */
     left: 0;
     top: 0;
     width: 100%; /* Full width */
@@ -51,7 +51,7 @@ h2.b{
     background-color: black;
     margin: auto;
     padding: 20px;
-    width: 80%;
+    width: 50%;
     height: 20%;
 }
   
