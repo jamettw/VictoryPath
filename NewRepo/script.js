@@ -1,4 +1,26 @@
 var timedis = 500;
+var pingbing = new Audio('pingbing.wav');
+var scr = new Audio('scr.wav');
+var lose = new Audio('lose.mp3');
+
+//sound
+function soundpingbing(){
+	pingbing.pause();
+	pingbing.currentTime = 0;
+	pingbing.play();
+}
+function soundscr(){
+	scr.pause();
+	scr.currentTime = 0;
+	scr.play();
+}
+function soundlose(){
+	lose.pause();
+	lose.currentTime = 0;
+	lose.play();
+}
+
+//create div
 for(i=0; i<4; i++){
 		for(j=0; j<4; j++){
 			$('#appendHere').append('<div id="box'+i+j+'"></div>');
@@ -13,12 +35,6 @@ for(i=0; i<4; i++){
 			$('#box'+pos+pos2).css('background-color', randomcolor);
 		}, timedis*t);
 	}
-
-		function playsound(){
-    document.querySelector('#audioau').play();
-    }
-
-
 	score = 0;
 
 
@@ -26,7 +42,7 @@ for(i=0; i<4; i++){
 			pos = $(this).attr('id').slice(3, 5);
 			play.push(pos);
 			click++;
-			playsound();
+			soundpingbing();
 		});
 	function playplay(){
 		result = [];
@@ -64,9 +80,12 @@ for(i=0; i<4; i++){
 				if(JSON.stringify(result) == JSON.stringify(play)){
 					score++;
 					click = 0;
+					soundscr();
 				}
 				else{
+					soundlose();
 					alert('Game over your score is '+ score);
+					score=0;
 				}
 				$('#score').text(score);
 				clearInterval(check);
