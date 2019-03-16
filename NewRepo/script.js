@@ -36,22 +36,13 @@ function timeOut(pos, pos2, t) {
     }, timedis * t);
 }
 score = 0;
-$('div[id^=box]').click(function() {
-    pos = $(this).attr('id').slice(3, 5);
-    play.push(pos);
-    click++;
-    soundpingbing();
-    allcolor = ["#2fc1ce", "#ffb300", "#ff1280", "#ca8dc9", "#f9ec00", "#6f369d"];
-    randomcolor = allcolor[Math.floor(Math.random() * allcolor.length)];
-    $('#box' + pos).css('background-color', randomcolor);
-});
 
 function playplay() {
     setTimeout(function() {
         $('div[id^=box]').each(function() {
             $(this).css('background-color', '#222');
         });
-    }, 500);
+    }, 500      );
     result = [];
     temp = 100;
     setTimeout(function() {
@@ -99,6 +90,15 @@ function playplay() {
     }, 100);
 }
 playplay();
+$('div[id^=box]').click(function() {
+    pos = $(this).attr('id').slice(3, 5);
+    play.push(pos);
+    click++;
+    soundpingbing();
+    allcolor = ["#2fc1ce", "#ffb300", "#ff1280", "#ca8dc9", "#f9ec00", "#6f369d"];
+    randomcolor = allcolor[Math.floor(Math.random() * allcolor.length)];
+    $('#box' + pos).css('background-color', randomcolor);
+});
 // Get the modal
 var modal = document.getElementById('myModal');
 // Get the button that opens the modal
