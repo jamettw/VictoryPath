@@ -22,10 +22,10 @@ function soundlose() {
     lose.play();
 }
 
-function set_value(num) {
-    localStorage.setItem('level', num);
-    selectmode(level);
-}
+var set_value = (i) => localStorage.select = i;
+var get = () => localStorage.select;
+var level = get();
+selectmode(parseInt(level   ));
 
 function selectmode(level) {
     if (level === 1) {
@@ -124,7 +124,6 @@ function playplay() {
         }
     }, 100);
 }
-playplay();
 // Get the modal
 var modal = document.getElementById('myModal');
 // Get the button that opens the modal
