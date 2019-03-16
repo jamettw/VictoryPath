@@ -24,7 +24,7 @@ a.butt:hover{
     color: #0F6;
     padding-top: 15px;
 }
-div.box {
+div.boxE {
     display: inline-block;
     background-color: #222;
     width: 100px;
@@ -33,12 +33,35 @@ div.box {
     border-radius: 100%;
     transition: .2s;
 }
-div.box:active {
+div.boxE:active {
     width: 85px;
     height: 85px;
 }
-div.box:hover {
-    opacity: 1.5;
+div.boxN {
+    display: inline-block;
+    background-color: #222;
+    width: 75px;
+    height: 75px;
+    margin: 5px;
+    border-radius: 100%;
+    transition: .2s;
+}
+div.boxN:active {
+    width: 60px;
+    height: 60px;
+}
+div.boxH {
+    display: inline-block;
+    background-color: #222;
+    width: 45px;
+    height: 45px;
+    margin: 5px;
+    border-radius: 100%;
+    transition: .2s;
+}
+div.boxH:active {
+    width: 30px;
+    height: 30px;
 }
 #mode {
     /*background-color: yellow;*/
