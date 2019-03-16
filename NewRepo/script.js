@@ -1,7 +1,8 @@
-var timedis = 500;
-var pingbing = new Audio('pingbing.wav');
-var scr = new Audio('scr.wav');
-var lose = new Audio('lose.mp3');
+var timedis = 3000;
+var pingbing = new Audio('sound/pingbing.wav');
+var scr = new Audio('sound/scr.wav');
+var lose = new Audio('sound/lose.mp3');
+var size = 4;
 //sound
 function soundpingbing() {
     pingbing.pause();
@@ -20,12 +21,38 @@ function soundlose() {
     lose.currentTime = 0;
     lose.play();
 }
-//create div
-for (i = 0; i < 4; i++) {
-    for (j = 0; j < 4; j++) {
-        $('#appendHere').append('<div class="box" id="box' + i + j + '"></div>');
+
+function set_value(num) {
+    localStorage.setItem('level', num);
+    selectmode(level);
+}
+
+function selectmode(level) {
+    if (level === 1) {
+        size = 4;
+        timedis = 3000;
+        set_box();
+        playplay();
+    } else if (level === 2) {
+        size = 8;
+        timedis = 5000;
+        set_box();
+        playplay();
+    } else if (level === 3) {
+        size = 12;
+        timedis = 7000;
+        set_box();
+        playplay();
     }
-    $('#appendHere').append('<br>');
+}
+//create div
+function set_box() {
+    for (i = 0; i < size; i++) {
+        for (j = 0; j < size; j++) {
+            $('#appendHere').append('<div class="box" id="box' + i + j + '"></div>');
+        }
+        $('#appendHere').append('<br>');
+    }
 }
 
 function timeOut(pos, pos2, t) {
@@ -33,45 +60,54 @@ function timeOut(pos, pos2, t) {
         allcolor = ["#2fc1ce", "#ffb300", "#ff1280", "#ca8dc9", "#f9ec00", "#6f369d"];
         randomcolor = allcolor[Math.floor(Math.random() * allcolor.length)];
         $('#box' + pos + pos2).css('background-color', randomcolor);
-    }, timedis * t);
+    }, 500 * t);
 }
 score = 0;
 
 function playplay() {
+    $('div[id^=box]').off('click');
     setTimeout(function() {
         $('div[id^=box]').each(function() {
             $(this).css('background-color', '#222');
         });
-    }, 500      );
+    }, 500);
     result = [];
     temp = 100;
     setTimeout(function() {
-        for (i = 0, j = 3; i < 4; i++, j--) {
-        if (temp != 100) {
-            combo = Math.floor(Math.random() * 3);
-            if (combo === 0 && temp != 0) pos = temp - 1;
-            else if (combo === 1) pos = temp;
-            else if (combo === 2 && temp != 3) pos = temp + 1;
-        } else pos = Math.floor(Math.random() * 4);
-        temp = pos;
-        timeOut(j, pos, i);
-        result.push(j + '' + pos);
-    }
+        for (i = 0, j = size - 1; i < size; i++, j--) {
+            if (temp != 100) {
+                combo = Math.floor(Math.random() * (size - 1));
+                if (combo === 0 && temp != 0) pos = temp - 1;
+                else if (combo === 1) pos = temp;
+                else if (combo === 2 && temp != (size - 1)) pos = temp + 1;
+            } else pos = Math.floor(Math.random() * size);
+            temp = pos;
+            timeOut(j, pos, i);
+            result.push(j + '' + pos);
+        }
     }, 1000);
-    
+    setTimeout(() => {
+        $('div[id^=box]').click(function() {
+            pos = $(this).attr('id').slice(3, 5);
+            play.push(pos);
+            click++;
+            soundpingbing();
+            allcolor = ["#2fc1ce", "#ffb300", "#ff1280", "#ca8dc9", "#f9ec00", "#6f369d"];
+            randomcolor = allcolor[Math.floor(Math.random() * allcolor.length)];
+            $('#box' + pos).css('background-color', randomcolor);
+        });
+    }, timedis);
     console.log(result);
     play = [];
     click = 0;
     console.log(play);
-
     setTimeout(function() {
         $('div[id^=box]').each(function() {
             $(this).css('background-color', '#222');
         });
-    }, 3000);
-
+    }, timedis);
     check = setInterval(function() {
-        if (click == 4) {
+        if (click == size) {
             if (JSON.stringify(result) == JSON.stringify(play)) {
                 score++;
                 click = 0;
@@ -84,21 +120,11 @@ function playplay() {
                 modal.style.display = "block";
                 $('span#score').text(score);
                 score = 0;
-                clearInterval(check);
             }
         }
     }, 100);
 }
 playplay();
-$('div[id^=box]').click(function() {
-    pos = $(this).attr('id').slice(3, 5);
-    play.push(pos);
-    click++;
-    soundpingbing();
-    allcolor = ["#2fc1ce", "#ffb300", "#ff1280", "#ca8dc9", "#f9ec00", "#6f369d"];
-    randomcolor = allcolor[Math.floor(Math.random() * allcolor.length)];
-    $('#box' + pos).css('background-color', randomcolor);
-});
 // Get the modal
 var modal = document.getElementById('myModal');
 // Get the button that opens the modal
