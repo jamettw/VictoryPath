@@ -46,14 +46,14 @@ function selectmode(level) {
     }
 }
 //create div
-function set_box() {
-    for (i = 0; i < size; i++) {
-        for (j = 0; j < size; j++) {
-            $('#appendHere').append('<div class="box" id="box' + i + j + '"></div>');
-        }
-        $('#appendHere').append('<br>');
-    }
-}
+// function set_box() {
+//     for (i = 0; i < size; i++) {
+//         for (j = 0; j < size; j++) {
+//             $('#appendHere').append('<div class="box" id="box' + i + j + '"></div>');
+//         }
+//         $('#appendHere').append('<br>');
+//     }
+// }
 
 function timeOut(pos, pos2, t) {
     setTimeout(function() {
