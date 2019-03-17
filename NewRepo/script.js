@@ -119,7 +119,6 @@ function playplay() {
                 soundlose();
                 modal.style.display = "block";
                 $('span#score').text(score);
-                score = 0;
             }
         }
     }, 100);
