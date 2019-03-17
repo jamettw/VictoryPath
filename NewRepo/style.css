@@ -55,15 +55,15 @@ div.boxN:active {
 div.boxH {
     display: inline-block;
     background-color: #222;
-    width: 45px;
-    height: 45px;
+    width: 55px;
+    height: 55px;
     margin: 5px;
     border-radius: 100%;
     transition: .2s;
 }
 div.boxH:active {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
 }
 div#mode {
     /*background-color: yellow;*/
