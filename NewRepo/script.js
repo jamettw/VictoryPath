@@ -34,13 +34,13 @@ function selectmode(level) {
         set_box();
         playplay();
     } else if (level === 2) {
-        size = 6;
-        timedis = 4000;
+        size = 8;
+        timedis = 5000;
         set_box();
         playplay();
     } else if (level === 3) {
-        size = 8;
-        timedis = 5000;
+        size = 12;
+        timedis = 7000;
         set_box();
         playplay();
     }
@@ -76,7 +76,7 @@ function playplay() {
     setTimeout(function() {
         for (i = 0, j = size - 1; i < size; i++, j--) {
             if (temp != 100) {
-                combo = Math.floor(Math.random() * 3);
+                combo = Math.floor(Math.random() * (size - 1));
                 if (combo === 0 && temp != 0) pos = temp - 1;
                 else if (combo === 1) pos = temp;
                 else if (combo === 2 && temp != (size - 1)) pos = temp + 1;
