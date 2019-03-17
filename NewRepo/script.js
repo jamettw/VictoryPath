@@ -31,17 +31,17 @@ function selectmode(level) {
     if (level === 1) {
         size = 4;
         timedis = 3000;
-        set_box();
+        for (i = 0; i < size; i++) {for (j = 0; j < size; j++) {$('#appendHere').append('<div class="boxE" id="box' + i + j + '"></div>');}$('#appendHere').append('<br>');}
         playplay();
     } else if (level === 2) {
-        size = 8;
-        timedis = 5000;
-        set_box();
+        size = 6;
+        timedis = 4000;
+        for (i = 0; i < size; i++) {for (j = 0; j < size; j++) {$('#appendHere').append('<div class="boxN" id="box' + i + j + '"></div>');}$('#appendHere').append('<br>');}
         playplay();
     } else if (level === 3) {
-        size = 12;
-        timedis = 7000;
-        set_box();
+        size = 8;
+        timedis = 5000;
+        for (i = 0; i < size; i++) {for (j = 0; j < size; j++) {$('#appendHere').append('<div class="boxH" id="box' + i + j + '"></div>');}$('#appendHere').append('<br>');}
         playplay();
     }
 }
