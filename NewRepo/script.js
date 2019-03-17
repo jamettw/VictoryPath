@@ -116,7 +116,7 @@ function playplay() {
                 clearInterval(check);
                 playplay();
             } else {
-                soundlose();
+                lose.play();
                 modal.style.display = "block";
                 $('span#score').text(score);
             }
