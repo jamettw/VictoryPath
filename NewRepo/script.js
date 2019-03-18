@@ -1,4 +1,5 @@
 var timedis = 3000;
+var timerandom = 500;
 var pingbing = new Audio('sound/pingbing.wav');
 var scr = new Audio('sound/scr.wav');
 var lose = new Audio('sound/lose.mp3');
@@ -21,27 +22,42 @@ function soundlose() {
     lose.currentTime = 0;
     lose.play();
 }
-
 var set_value = (i) => localStorage.select = i;
 var get = () => localStorage.select;
 var level = get();
-selectmode(parseInt(level   ));
+selectmode(parseInt(level));
 
 function selectmode(level) {
     if (level === 1) {
         size = 4;
         timedis = 3000;
-        for (i = 0; i < size; i++) {for (j = 0; j < size; j++) {$('#appendHere').append('<div class="boxE" id="box' + i + j + '"></div>');}$('#appendHere').append('<br>');}
+        for (i = 0; i < size; i++) {
+            for (j = 0; j < size; j++) {
+                $('#appendHere').append('<div class="boxE" id="box' + i + j + '"></div>');
+            }
+            $('#appendHere').append('<br>');
+        }
         playplay();
     } else if (level === 2) {
         size = 6;
         timedis = 4000;
-        for (i = 0; i < size; i++) {for (j = 0; j < size; j++) {$('#appendHere').append('<div class="boxN" id="box' + i + j + '"></div>');}$('#appendHere').append('<br>');}
+        for (i = 0; i < size; i++) {
+            for (j = 0; j < size; j++) {
+                $('#appendHere').append('<div class="boxN" id="box' + i + j + '"></div>');
+            }
+            $('#appendHere').append('<br>');
+        }
         playplay();
     } else if (level === 3) {
         size = 8;
-        timedis = 5000;
-        for (i = 0; i < size; i++) {for (j = 0; j < size; j++) {$('#appendHere').append('<div class="boxH" id="box' + i + j + '"></div>');}$('#appendHere').append('<br>');}
+        timedis = 3000;
+        timerandom = 250;
+        for (i = 0; i < size; i++) {
+            for (j = 0; j < size; j++) {
+                $('#appendHere').append('<div class="boxH" id="box' + i + j + '"></div>');
+            }
+            $('#appendHere').append('<br>');
+        }
         playplay();
     }
 }
@@ -54,17 +70,17 @@ function selectmode(level) {
 //         $('#appendHere').append('<br>');
 //     }
 // }
-
 function timeOut(pos, pos2, t) {
     setTimeout(function() {
         allcolor = ["#2fc1ce", "#ffb300", "#ff1280", "#ca8dc9", "#f9ec00", "#6f369d"];
         randomcolor = allcolor[Math.floor(Math.random() * allcolor.length)];
         $('#box' + pos + pos2).css('background-color', randomcolor);
-    }, 500 * t);
+    }, timerandom * t);
 }
-score = 0;
+var score = 0;
 
 function playplay() {
+    $('span#score').text(score);
     $('div[id^=box]').off('click');
     setTimeout(function() {
         $('div[id^=box]').each(function() {
@@ -76,11 +92,19 @@ function playplay() {
     setTimeout(function() {
         for (i = 0, j = size - 1; i < size; i++, j--) {
             if (temp != 100) {
-                combo = Math.floor(Math.random() * (size - 1));
-                if (combo === 0 && temp != 0) pos = temp - 1;
-                else if (combo === 1) pos = temp;
-                else if (combo === 2 && temp != (size - 1)) pos = temp + 1;
-            } else pos = Math.floor(Math.random() * size);
+                combo = Math.floor(Math.random() * 5);
+                if (combo === 0 && temp != 0) 
+                    pos = temp - 1;
+                else if (combo === 1 && temp != 0) 
+                    pos = temp - 1;
+                else if (combo === 2) 
+                    pos = temp;
+                else if (combo === 3 && temp != (size - 1)) 
+                    pos = temp + 1;
+                else if (combo === 4 && temp != (size - 1)) 
+                    pos = temp + 1;
+            } else
+                pos = Math.floor(Math.random() * size);
             temp = pos;
             timeOut(j, pos, i);
             result.push(j + '' + pos);
@@ -123,28 +147,37 @@ function playplay() {
         }
     }, 100);
 }
-// Get the modal
-var modal = document.getElementById('myModal');
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-var repl = document.getElementsByClassName("button")[0];
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-    modal.style.display = "none";
-    clearInterval(check);
-}
-repl.onclick = function() {
-    modal.style.display = "none";
-    $('span#score').text(score);
-    clearInterval(check);
-    playplay();
-}
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
+
+function howto() {
+    var modal = document.getElementById('howto');
+    var span = document.getElementsByClassName("close")[0];
+    modal.style.display = "block"
+    span.onclick = function() {
         modal.style.display = "none";
         clearInterval(check);
     }
 }
+// Get the modal
+var modal = document.getElementById('myModal');
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+var repl = document.getElementsByClassName("button")[0];
+// When the user clicks on <span> (x), close the modal
+// span.onclick = function() {
+//     modal.style.display = "none";
+//     clearInterval(check);
+// }
+repl.onclick = function() {
+    modal.style.display = "none";
+    $('span#score').text(score);
+    clearInterval(check);
+    score = 0;
+    playplay();
+}
+// When the user clicks anywhere outside of the modal, close it
+// window.onclick = function(event) {
+//     if (event.target == modal) {
+//         modal.style.display = "none";
+//         clearInterval(check);
+//     }
+// }
