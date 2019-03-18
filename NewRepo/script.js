@@ -136,6 +136,10 @@ function playplay() {
                 score++;
                 click = 0;
                 $('span#score').text(score);
+                allcolor = ["#2fc1ce", "#ffb300", "#ff1280", "#ca8dc9", "#f9ec00"];
+                randomcolor = allcolor[Math.floor(Math.random() * allcolor.length)];
+                $('span#score').css('color', randomcolor);
+                $('span#score').css('text-shadow', '0px 0px 2.2em'+randomcolor);
                 soundscr();
                 clearInterval(check);
                 playplay();
