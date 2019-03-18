@@ -93,15 +93,15 @@ function playplay() {
         for (i = 0, j = size - 1; i < size; i++, j--) {
             if (temp != 100) {
                 combo = Math.floor(Math.random() * 5);
-                if (combo === 0 && temp != 0) 
+                if (combo === 0 && temp != 0)
                     pos = temp - 1;
-                else if (combo === 1 && temp != 0) 
+                else if (combo === 1 && temp != 0)
                     pos = temp - 1;
-                else if (combo === 2) 
+                else if (combo === 2)
                     pos = temp;
-                else if (combo === 3 && temp != (size - 1)) 
+                else if (combo === 3 && temp != (size - 1))
                     pos = temp + 1;
-                else if (combo === 4 && temp != (size - 1)) 
+                else if (combo === 4 && temp != (size - 1))
                     pos = temp + 1;
             } else
                 pos = Math.floor(Math.random() * size);
@@ -144,6 +144,7 @@ function playplay() {
                 clearInterval(check);
                 playplay();
             } else {
+                clearInterval(check);
                 lose.play();
                 modal.style.display = "block";
                 $('span#score').text(score);
