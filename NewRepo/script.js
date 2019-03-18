@@ -10,7 +10,6 @@ function soundpingbing() {
     pingbing.currentTime = 0;
     pingbing.play();
 }
-
 function soundscr() {
     scr.pause();
     scr.currentTime = 0;
